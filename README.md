@@ -15,6 +15,7 @@
 - `comprehend.detect_key_phrases(text: text, language_code: 'en')`
 
 ### Other Possible Operations:
+
 - :batch_detect_dominant_language
 - :batch_detect_entities
 - :batch_detect_key_phrases
@@ -26,3 +27,9 @@
 - :detect_sentiment
 - :list_topics_detection_jobs
 - :start_topics_detection_job
+
+### Current Operations
+
+- Currently, the only operation being used is the `detect_key_phrases` command
+- To use, simply open the app, type in whatever text you would like analyzed, and click the 'Analyze Responses' button
+- It will then use the AWS Comprehend API to analyze that text for key phrases, and it will redirect you to a new page that will show you the breakdown.
