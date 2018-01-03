@@ -25,15 +25,14 @@ class ResponsesController < ApplicationController
   # POST /responses.json
   def create
     @response = Response.new(response_params)
-
-    respond_to do |format|
-      if @response.save
-        format.html { redirect_to @response, notice: 'Response was successfully created.' }
-        format.json { render :show, status: :created, location: @response }
-      else
-        format.html { render :new }
-        format.json { render json: @response.errors, status: :unprocessable_entity }
-      end
+    if @response.save
+      id = @response.id
+      text = @response.text
+      comprehend = Aws::Comprehend::Client.new(region: 'us-east-1')
+      analysis = comprehend.detect_key_phrases(text: text, language_code: 'en')
+      Analysis.create comprehend: analysis.key_phrases, response_id: id
+      @analysis = Analysis.where(response_id: id).first
+      redirect_to @analysis
     end
   end
 
