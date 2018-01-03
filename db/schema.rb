@@ -10,12 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171227145410) do
+ActiveRecord::Schema.define(version: 20180103171413) do
 
   create_table "analyses", force: :cascade do |t|
     t.text     "comprehend"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "response_id"
+    t.index ["response_id"], name: "index_analyses_on_response_id"
   end
 
   create_table "responses", force: :cascade do |t|
