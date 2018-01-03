@@ -11,12 +11,11 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :text %>
-    <%= f.text_field :text %>
+  <div class="form-group">
+    <%= f.text_area :text, class: 'form-control', rows: 5 %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Analyze Responses', class: 'btn btn-primary' %>
   </div>
 <% end %>
