@@ -3,7 +3,8 @@
 <h1>Response Analysis</h1>
 <p>
   <strong>Comprehend:</strong>
-  <%= @analysis.comprehend %>
+  <%= @analysis.phrase %>
+  <%= @analysis.score.to_f %>
 </p>
 
 <%= link_to 'Edit', edit_analysis_path(@analysis) %> |

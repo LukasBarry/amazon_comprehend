@@ -7,7 +7,8 @@ end
 # Table name: analyses
 #
 #  id          :integer          not null, primary key
-#  comprehend  :text
+#  phrase      :string
+#  score       :float
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  response_id :integer
@@ -15,4 +16,8 @@ end
 # Indexes
 #
 #  index_analyses_on_response_id  (response_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (response_id => responses.id)
 #

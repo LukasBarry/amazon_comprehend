@@ -30,10 +30,13 @@ class ResponsesController < ApplicationController
       text = @response.text
       comprehend = Aws::Comprehend::Client.new(region: 'us-east-1')
       analysis = comprehend.detect_key_phrases(text: text, language_code: 'en')
-      Analysis.create comprehend: analysis.key_phrases, response_id: id
-      @analysis = Analysis.where(response_id: id).first
-      redirect_to @analysis
+      analysis.key_phrases.each do |struct|
+        Analysis.create(score: struct['score'].to_f, phrase: struct['text'],
+                        response_id: id)
+      end
     end
+    @analysis = Analysis.where(response_id: id).first
+    redirect_to @analysis
   end
 
   # PATCH/PUT /responses/1
