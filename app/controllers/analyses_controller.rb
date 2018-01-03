@@ -10,6 +10,8 @@ class AnalysesController < ApplicationController
   # GET /analyses/1
   # GET /analyses/1.json
   def show
+    @response = Response.where(id: @analysis.response_id).first
+    @analyses = Analysis.where(response_id: @response.id)
   end
 
   # GET /analyses/new

@@ -1,11 +1,23 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Response Analysis</h1>
-<p>
-  <strong>Comprehend:</strong>
-  <%= @analysis.phrase %>
-  <%= @analysis.score.to_f %>
-</p>
+<br />
+<strong>Text:</strong> <%= @response.text %>
+<br />
+<br />
+<strong>Key Phrases:</strong>
+<br />
+<% @analyses.each do |analysis| %>
+  <br />
+  <strong>Phrase:</strong> <%= analysis.phrase %><br />
+  <strong>Score:</strong> <%= analysis.score.to_f %><br />
+  <br />
+<% end %>
 
-<%= link_to 'Edit', edit_analysis_path(@analysis) %> |
-<%= link_to 'Back', analyses_path %>
+<br />
+<%= link_to 'Edit', edit_analysis_path(@analysis), class: 'btn btn-secondary' %> |
+<%= link_to 'Back', analyses_path, class: 'btn btn-secondary' %>
+<br />
+<br />
+<%= link_to 'Enter New Responses', new_response_path, class: 'btn btn-primary btn-lg', role: "button" %>
+<br />
